@@ -33,7 +33,7 @@ Examples
 ``` js
 var url = require('url');
 var https = require('https');
-var HttpsProxyAgent = require('https-proxy-agent');
+var createHttpsProxyAgent = require('https-proxy-agent');
 
 // HTTP/HTTPS proxy to connect to
 var proxy = process.env.http_proxy || 'http://168.63.76.32:3128';
@@ -45,7 +45,7 @@ console.log('attempting to GET %j', endpoint);
 var options = url.parse(endpoint);
 
 // create an instance of the `HttpsProxyAgent` class with the proxy server information
-var agent = new HttpsProxyAgent(proxy);
+var agent = createHttpsProxyAgent(proxy);
 options.agent = agent;
 
 https.get(options, function (res) {
@@ -59,7 +59,7 @@ https.get(options, function (res) {
 ``` js
 var url = require('url');
 var WebSocket = require('ws');
-var HttpsProxyAgent = require('https-proxy-agent');
+var createHttpsProxyAgent = require('https-proxy-agent');
 
 // HTTP/HTTPS proxy to connect to
 var proxy = process.env.http_proxy || 'http://168.63.76.32:3128';
@@ -73,7 +73,7 @@ console.log('attempting to connect to WebSocket %j', endpoint);
 // create an instance of the `HttpsProxyAgent` class with the proxy server information
 var options = url.parse(proxy);
 
-var agent = new HttpsProxyAgent(options);
+var agent = createHttpsProxyAgent(options);
 
 // finally, initiate the WebSocket connection
 var socket = new WebSocket(endpoint, { agent: agent });
